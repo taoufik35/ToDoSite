@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Project index{% endblock %}
+
+{% block body %}
+    <h1>Project index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Datecreat</th>
+                <th>Summary</th>
+                <th>Deadline</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for project in projects %}
+            <tr>
+                <td>{{ project.id }}</td>
+                <td>{{ project.name }}</td>
+                <td>{{ project.datecreat ? project.datecreat|date('d/m/Y')}}</td>
+                <td>{{ project.summary }}</td>
+                <td>{{ project.deadline ? project.deadline|date('d/m/Y')}}</td>
+                <td>
+                    <a class="btn btn-danger" href="{{ path('project_show', {'id': project.id}) }}">show</a>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class= "btn btn-secondary" href="{{ path('project_new') }}">Create new</a>
+{% endblock %}
