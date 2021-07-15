@@ -2,40 +2,27 @@
 
 {% block title %}Project index{% endblock %}
 
-{% block body %}
-    <h1>Project index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Datecreat</th>
-                <th>Summary</th>
-                <th>Deadline</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+{% block body %}   
+<div class="container text-center" id="ind" >    
+    <h2 class="py-5">Vos Projets</h2>
+    <div class="row " >
         {% for project in projects %}
-            <tr>
-                <td>{{ project.id }}</td>
-                <td>{{ project.name }}</td>
-                <td>{{ project.datecreat ? project.datecreat|date('d/m/Y')}}</td>
-                <td>{{ project.summary }}</td>
-                <td>{{ project.deadline ? project.deadline|date('d/m/Y')}}</td>
-                <td>
-                    <a class="btn btn-danger" href="{{ path('project_show', {'id': project.id}) }}">show</a>
-
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a class= "btn btn-secondary" href="{{ path('project_new') }}">Create new</a>
+           <div class="col-12 col-md-6 col-lg-4 my-2">
+            <div class="card text-center">
+                <div class="card-header"> 
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"> {{project.name}}</li>
+                        <li class="list-group-item">Date de création : {{project.datecreat ? project.datecreat|date('d/m/Y')}}</li>
+                        <li class="list-group-item "><h5>Résumé du projet</h5>{{project.summary}}</li>
+                         <li class="list-group-item">Date d'éxpiration : {{project.deadline ? project.deadline|date('d/m/Y')}}</li>
+                        <li class="list-group-item"><a class="btn btn-success" href="{{ path('project_show', {'id': project.id}) }}">voir les tâches</a></li>
+                        <li class="list-group-item"><a class="btn btn-danger" href="{{ path('project_delete',{'id': project.id})}}">supprimer le projet</a></li>        
+                    </ul>
+                </div>
+            </div>
+        </div>
+          {% endfor %}   
+    </div>
+</div> 
 {% endblock %}
+ 
