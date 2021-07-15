@@ -6,6 +6,7 @@ use App\Entity\Task;
 use App\Entity\Project;
 use App\Form\ProjectType;
 use App\Repository\ProjectRepository;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,9 +21,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 #[Route('/project')]
 class ProjectController extends AbstractController
 {
-    #[Route('/project', name: 'project_index', methods: ['GET'])]
-    #[Route('/', name: 'index', methods: ['GET'])]
-    public function index(ProjectRepository $projectRepository): Response
+    #[Route('/', name: 'project_index', methods: ['GET'])]
+
+    public function index(): Response
     {
         
         $projects = $this->getUser()->getProjects();
@@ -43,6 +44,8 @@ class ProjectController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $project->setUser($this->getUser());
+            $project->setDatecreat(new \DateTime());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($project);
             $entityManager->flush();
@@ -56,12 +59,19 @@ class ProjectController extends AbstractController
         ]);
     }
 
-    #[Route('project/{id}', name: 'project_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'project_show', methods: ['GET'])]
     public function show(Project $project): Response
     {
-        return $this->render('project/show.html.twig', [
+        if ($this->getUser()==$project->getUser()) {
+           return $this->render('project/show.html.twig', [
             'project' => $project,
-        ]);
+            ]);
+
+        }
+        else{
+            return $this->redirectToRoute('project_index', [], Response::HTTP_SEE_OTHER);
+        }
+        
     }
 
     #[Route('/{id}/edit', name: 'project_edit', methods: ['GET', 'POST'])]

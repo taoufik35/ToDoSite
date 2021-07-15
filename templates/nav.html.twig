@@ -7,9 +7,12 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Accueil</a>
+          <a class="nav-link active" aria-current="page" href='{{ path('project_index') }}'>Accueil</a>
         </li>
-          <a class="nav-link active" aria-current="page" href="#">Créer un project</a>
+          <a class="nav-link active" aria-current="page" href='{{ path('project_new') }}'>Créer un project</a>
+        </li>
+          </li>
+          <a class="nav-link active" aria-current="page" href='{{ path('app_logout') }}'>Déconnexion</a>
         </li>
       </ul>
     </div>
