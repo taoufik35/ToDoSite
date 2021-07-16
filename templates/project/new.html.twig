@@ -3,9 +3,9 @@
 {% block title %}New Project{% endblock %}
 
 {% block body %}
-    <h1>Create new Project</h1>
+    <h1>Création d'un nouveau projet</h1>
 
     {{ include('project/_form.html.twig') }}
 
-    <a href="{{ path('project_index') }}">back to list</a>
+    <a class="btn btn-primary my-3 href="{{ path('project_index') }}>Liste des projets</a>
 {% endblock %}

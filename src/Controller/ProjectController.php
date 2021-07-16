@@ -63,14 +63,19 @@ class ProjectController extends AbstractController
     public function show(Project $project): Response
     {
         if ($this->getUser()==$project->getUser()) {
+
+             $task= new Task;
            return $this->render('project/show.html.twig', [
             'project' => $project,
+            'task' => $task
             ]);
 
         }
         else{
             return $this->redirectToRoute('project_index', [], Response::HTTP_SEE_OTHER);
         }
+
+       
         
     }
 
