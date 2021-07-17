@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Task;
+use App\Entity\Project;
 use App\Form\TaskType;
 use App\Repository\TaskRepository;
 use App\Repository\ProjectRepository;
@@ -22,15 +23,15 @@ class TaskController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'task_new', methods: ['GET', 'POST'])]
-    public function new(Request $request): Response
+    #[Route('/new', name: 'task_nex', methods: ['GET', 'POST'])]
+    public function new(Request $request, ProjectRepository $projectRepository, int $projectId): Response
     {
         $task = new Task();
-        $project= $ProjectRepository->find($Id);
         $form = $this->createForm(TaskType::class, $task);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $task->setDateTask(new \DateTime());
+            $task->setDateTask(new \DateTime());         
+            $project = $projectRepository->find($projectId);
             $task->setProject($project);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($task);
