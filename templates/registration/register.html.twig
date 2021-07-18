@@ -7,7 +7,7 @@
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
      <h1>S'incrire sur notre ToDoSite</h1>
-    <div class="container">
+    <div class="container cont">
         <div class="row">
             {{ form_start(registrationForm) }}  
                 {{ form_row(registrationForm.firstname,{
@@ -23,7 +23,7 @@
                     label: 'Mot de passe : '
                 }) }}<br/>       
                 {{ form_row(registrationForm.agreeTerms, {
-                    label: 'Accepter les conditions    '
+                    label: ' Accepter les conditions'
                 }) }}<br/>
             
                 <button type="submit" class="btn btn-danger">s'incrire</button>

@@ -23,21 +23,21 @@ class TaskController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'task_nex', methods: ['GET', 'POST'])]
-    public function new(Request $request, ProjectRepository $projectRepository, int $projectId): Response
+    #[Route('/new/{id}', name: 'task_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, ProjectRepository $projectRepository, int $id=1): Response
     {
         $task = new Task();
+        $project= $projectRepository->find($id); 
         $form = $this->createForm(TaskType::class, $task);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $task->setDateTask(new \DateTime());         
-            $project = $projectRepository->find($projectId);
             $task->setProject($project);
+            $task->setDateTask(new \DateTime());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($task);
             $entityManager->flush();
 
-            return $this->redirectToRoute('task_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('project_show',["id" => $project->getId()]);
         }
 
         return $this->renderForm('task/new.html.twig', [

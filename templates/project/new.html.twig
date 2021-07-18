@@ -3,9 +3,13 @@
 {% block title %}New Project{% endblock %}
 
 {% block body %}
-    <h1>Création d'un nouveau projet</h1>
+<section>
+    <div class="text-center">
+        <h1>Création d'un nouveau projet</h1>
 
-    {{ include('project/_form.html.twig') }}
+        {{ include('project/_form.html.twig') }}
 
-    <a class="btn btn-primary my-3 href="{{ path('project_index') }}>Liste des projets</a>
+        <a class="btn btn-primary my-3 href="{{ path('project_index') }}>Liste des projets</a>
+    </div>
+</section>
 {% endblock %}

@@ -18,3 +18,8 @@ h1{
 .inscr{
     margin-bottom: 15em;
 }
+
+.cont{
+    text-align: center;
+    width: 50%
+}
