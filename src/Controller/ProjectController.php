@@ -23,10 +23,11 @@ class ProjectController extends AbstractController
 {
     #[Route('/', name: 'project_index', methods: ['GET'])]
 
-    public function index(): Response
+    public function index( ProjectRepository $projectRepository ): Response
     {
         
-        $projects = $this->getUser()->getProjects();
+        $user=$this->getUser();
+        $projects = $projectRepository->findorderProject($user);
         return $this->render('project/index.html.twig', [
             'projects' => $projects,
         ]);
