@@ -3,6 +3,10 @@
 {% block title %}Project index{% endblock %}
 
 {% block body %}
+<div class="securebutton">
+<button class="btn secu" onclick="securmess()">Aide d'utilisation</button>
+</div>
+
 <div class="butt">
 <button class="btn btn-success" id="myBtn">voir les comptes</button>
 </div>   
@@ -12,7 +16,7 @@
         {% for project in projects %}
            <div class="col-12 col-md-6 col-lg-4 my-2">
                 <div class="card text-center ">
-                    <div class="card-header parent"> 
+                    <div class="card-header"> 
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item"> {{project.name}}</li>
                             <li class="list-group-item">Date de création : {{project.datecreat ? project.datecreat|date('d/m/Y')}}</li>

@@ -41,13 +41,6 @@ h1{
     
   }
 
-  .parent:hover > ul {
-    opacity: 0.5;
-  }
-  .parent:hover > ul:hover {
-    opacity: 1.0;
-  }
-
   .supp{
       background-color: black;
       color: white;
@@ -58,4 +51,9 @@ h1{
 
   .check{
       color: green;
+  }
+
+  .secu{
+      background-color: indigo;
+      color: white;
   }
