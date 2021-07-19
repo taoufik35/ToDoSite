@@ -30,7 +30,7 @@ class ProjectRepository extends ServiceEntityRepository
         ->innerJoin('p.user', 'u')
         ->addSelect('u')
         ->andWhere('p.user= :val')
-        ->orderBy('p.deadline', 'DESC')
+        ->orderBy('p.deadline', 'Asc')
         ->setParameter('val',$user)
         ->getQuery()
         ->getResult()

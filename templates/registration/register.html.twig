@@ -9,23 +9,27 @@
      <h1>S'incrire sur notre ToDoSite</h1>
     <div class="container cont">
         <div class="row">
-            {{ form_start(registrationForm) }}  
-                {{ form_row(registrationForm.firstname,{
-                    label: 'Prénom : '
-                }) }}<br/>
-                {{ form_row(registrationForm.lastname,{
-                    label: 'Nom : '
-                }) }}<br/>           
-                {{ form_row(registrationForm.email, {
-                    label: 'Votre mail : '
-                }) }}<br/>           
-                {{ form_row(registrationForm.plainPassword, {
-                    label: 'Mot de passe : '
-                }) }}<br/>       
-                {{ form_row(registrationForm.agreeTerms, {
-                    label: ' Accepter les conditions'
-                }) }}<br/>
-            
+            {{ form_start(registrationForm) }} 
+                <div class="for"> 
+                    {{ form_row(registrationForm.firstname,{
+                        label: 'Prénom'
+                    }) }}<br/>
+                    
+                    {{ form_row(registrationForm.lastname,{
+                        label: 'Nom'
+                    }) }}<br/>           
+                    {{ form_row(registrationForm.email, {
+                        label: 'Votre mail'
+                    }) }}<br/>           
+                    {{ form_row(registrationForm.plainPassword, {
+                        label: 'Mot de passe'
+                    }) }}<br/> 
+                 </div>
+                <div class="condi">     
+                    {{ form_row(registrationForm.agreeTerms, {
+                        label: ' Accepter les conditions'
+                    }) }}<br/>
+                </div>
                 <button type="submit" class="btn btn-danger">s'incrire</button>
             {{ form_end(registrationForm) }}
             

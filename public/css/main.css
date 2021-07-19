@@ -57,3 +57,11 @@ h1{
       background-color: indigo;
       color: white;
   }
+
+  .condi{
+      display: flex;
+      justify-content: center;
+  }
+  .for{
+      font-weight: bold;
+  }
